@@ -1,0 +1,31 @@
+﻿@model IEnumerable<AuthMenuList>
+
+
+<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+            </li>
+        }
+
+        @if (Model.Any())
+        {
+            @foreach (var menu in Model.OrderBy(i => i.MenuId))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="@menu.Controller" asp-action="@menu.Action">@menu.Name</a>
+                </li>
+            }
+        }
+
+    </ul>
+</div>

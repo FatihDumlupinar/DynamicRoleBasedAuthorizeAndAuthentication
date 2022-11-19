@@ -1,0 +1,12 @@
+﻿using DynamicyRoles.Domain.Common;
+
+namespace DynamicyRoles.Domain.Entities
+{
+    public class AppRoleAuthorize : BaseEntity
+    {
+        public AppRole AppRole { get; set; }
+
+        public AppStaticMenu AppStaticMenu { get; set; }
+
+    }
+}
