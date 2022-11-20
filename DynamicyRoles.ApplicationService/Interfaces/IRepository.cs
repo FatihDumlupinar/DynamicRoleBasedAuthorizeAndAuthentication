@@ -10,8 +10,8 @@ namespace DynamicyRoles.ApplicationService.Interfaces
         Task DeleteAllAsync(List<TEntity> entity);
         Task DeleteAsync(TEntity entity);
         TEntity? Get(Expression<Func<TEntity, bool>> filter);
-        IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>> filter);
-        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter);
+        IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>>? filter = null);
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? filter=null);
         Task UpdateAllAsync(List<TEntity> entity);
         Task UpdateAsync(TEntity entity);
 

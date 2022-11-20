@@ -56,10 +56,10 @@ namespace DynamicyRoles.Persistence.Seed
 
                 var rolesAuthorizes = new List<AppRoleAuthorize>()
                 {
-                    new(){AppRole=roles[0],AppStaticMenu=staticMenus[0]},
-                    new(){AppRole=roles[0],AppStaticMenu=staticMenus[1]},
-                    new(){AppRole=roles[0],AppStaticMenu=staticMenus[2]},
-                    new(){AppRole=roles[1],AppStaticMenu=staticMenus[1]},
+                    new(){AppRole=roles[0],AppStaticMenuId=staticMenus[0].Id},
+                    new(){AppRole=roles[0],AppStaticMenuId=staticMenus[1].Id},
+                    new(){AppRole=roles[0],AppStaticMenuId=staticMenus[2].Id},
+                    new(){AppRole=roles[1],AppStaticMenuId=staticMenus[1].Id},
                 };
 
                 await dbContext.AppRoleAuthorizes.AddRangeAsync(rolesAuthorizes);

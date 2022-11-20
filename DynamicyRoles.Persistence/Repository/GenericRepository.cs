@@ -53,14 +53,14 @@ namespace DynamicyRoles.Persistence.Repository
             return _entities.FirstOrDefault(filter);
         }
 
-        public IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>> filter)
+        public IQueryable<TEntity> GetList(Expression<Func<TEntity, bool>>? filter = null)
         {
-            return _entities.Where(filter);
+            return filter == null ? _entities : _entities.Where(filter);
         }
 
-        public Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter)
+        public Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>>? filter = null)
         {
-            return _entities.Where(filter).ToListAsync();
+            return filter == null ? _entities.ToListAsync() : _entities.Where(filter).ToListAsync();
         }
 
         public Task UpdateAllAsync(List<TEntity> entity)

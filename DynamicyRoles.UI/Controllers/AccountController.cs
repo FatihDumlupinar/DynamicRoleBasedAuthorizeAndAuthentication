@@ -41,20 +41,19 @@ namespace DynamicyRoles.UI.Controllers
             await using var conn = _unitOfWork.AppDbContext.Database.GetDbConnection();
 
             var getUserAllAuthData = await conn.QueryAsync<AuthMenuList>(@"
-                Select 
-                    asm.Id as MenuId,
-                    asm.Name,
-                    asm.Controller,
-                    asm.Action,
-                    asm.IsHeader
-                    from AppRoles ar, 
-                    AppRoleAuthorizes ara, 
-                    AppUsers au, 
-                    AppUsersAndAppRoles auaa,
-                    AppStaticMenus asm 
-                    Where ar.Id=ara.AppRoleId and ar.Id=auaa.AppRoleId and
-                    auaa.AppUserId=au.Id and ara.AppStaticMenuId=asm.Id and
-                    ar.Id=@UserId
+               Select 
+                    AppStaticMenus.Id as MenuId,
+                    AppStaticMenus.Name,
+                    AppStaticMenus.Controller,
+                    AppStaticMenus.Action,
+                    AppStaticMenus.IsHeader
+                from AppRoles, 
+                    AppRoleAuthorizes, 
+					AppStaticMenus,
+                    AppUsersAndAppRoles,
+                    AppUsers
+                Where AppRoles.Id = AppRoleAuthorizes.AppRoleId and AppRoleAuthorizes.AppStaticMenuId = AppStaticMenus.Id and AppRoles.Id = AppUsersAndAppRoles.AppRoleId and AppUsersAndAppRoles.AppUserId = AppUsers.Id and 
+				AppUsers.Id=@UserId
                 ", new { UserId = user.Id });
 
             List<AuthMenuList> authMenuList = new();

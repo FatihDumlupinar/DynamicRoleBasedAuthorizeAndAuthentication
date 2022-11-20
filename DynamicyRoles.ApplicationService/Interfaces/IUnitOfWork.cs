@@ -8,6 +8,7 @@ namespace DynamicyRoles.ApplicationService.Interfaces
         IRepository<AppRole> AppRoles { get; }
         IRepository<AppRoleAuthorize> AppRoleAuthorizes { get; }
         IRepository<AppUser> AppUsers { get; }
+        IRepository<AppUsersAndAppRoles> AppUsersAndAppRoles { get; }
 
         DbContext AppDbContext { get; }
 
